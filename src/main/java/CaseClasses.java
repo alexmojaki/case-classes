@@ -76,13 +76,10 @@ public enum CaseClasses {
     public static CaseClass toCaseClass(final Map<? extends String, ?> map) {
         return new CaseClass() {
             @Override
-            public boolean buildResult(ResultBuilder r) {
+            public void buildResult(ResultBuilder builder) {
                 for (Map.Entry<? extends String, ?> entry : map.entrySet()) {
-                    if (r.name(entry.getKey()) && r.value(entry.getValue())) {
-                        break;
-                    }
+                    builder.add(entry.getKey(), entry.getValue());
                 }
-                return false;
             }
         };
     }
@@ -90,14 +87,11 @@ public enum CaseClasses {
     public static CaseClass toCaseClass(final Iterable<?> iterable) {
         return new CaseClass() {
             @Override
-            public boolean buildResult(ResultBuilder r) {
+            public void buildResult(ResultBuilder builder) {
                 int i = 0;
                 for (Object value : iterable) {
-                    if (r.name("" + i++) && r.value(value)) {
-                        break;
-                    }
+                    builder.add("" + i++, value);
                 }
-                return false;
             }
         };
     }

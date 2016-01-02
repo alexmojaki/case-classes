@@ -1,69 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class DualResultBuilder extends AbstractResultBuilder {
 
-    private SecondResultBuilder secondBuilder = new SecondResultBuilder();
-    protected CaseClass o1;
-    protected CaseClass o2;
-    private int position = 0;
-    private String currentName;
+    private List<String> names = new ArrayList<String>();
+    private List<Object> values = new ArrayList<Object>();
 
-    public DualResultBuilder(CaseClass o1, CaseClass o2) {
-        this.o1 = o1;
-        this.o2 = o2;
-    }
-
-    @Override
-    public void simpleName(String name) {
-        currentName = name;
-    }
-
-    @Override
-    public boolean value(Object value) {
-        buildSecondResult();
-        if (foundSecondValue()) {
-            position++;
-            return apply(currentName, value, secondBuilder.currentName, secondBuilder.currentValue);
-        }
-        return extraFirstValue(currentName, value);
-    }
-
-    private boolean foundSecondValue() {
-        return secondBuilder.position > position;
-    }
-
-    private void buildSecondResult() {
-        secondBuilder.position = 0;
-        o2.buildResult(secondBuilder);
-    }
-
-    protected void checkForExtraSecondValue() {
-        buildSecondResult();
-        if (foundSecondValue()) {
-            extraSecondValue(secondBuilder.currentName, secondBuilder.currentValue);
+    protected void buildResult(CaseClass o1, CaseClass o2) {
+        o1.buildResult(this);
+        SecondResultBuilder secondResultBuilder = new SecondResultBuilder();
+        o2.buildResult(secondResultBuilder);
+        int size = names.size();
+        for (int i = secondResultBuilder.index; i < size; i++) {
+            extraFirstValue(names.get(i), values.get(i));
         }
     }
 
-    protected abstract boolean extraFirstValue(String name, Object value);
+    @Override
+    protected void voidAdd(String name, Object value) {
+        names.add(name);
+        values.add(value);
+    }
+
+    protected abstract void extraFirstValue(String name, Object value);
 
     protected abstract void extraSecondValue(String name, Object value);
 
-    protected abstract boolean apply(String name1, Object value1, String name2, Object value2);
+    protected abstract void apply(String name1, Object value1, String name2, Object value2);
 
     private class SecondResultBuilder extends AbstractResultBuilder {
 
-        private int position;
-        private String currentName;
-        private Object currentValue;
+        private int index;
 
         @Override
-        public boolean name(String name) {
-            currentName = name;
-            return position++ == DualResultBuilder.this.position;
-        }
-
-        @Override
-        public boolean value(Object value) {
-            currentValue = value;
-            return true;
+        protected void voidAdd(String name, Object value) {
+            if (index < names.size()) {
+                apply(names.get(index), values.get(index), name, value);
+                index++;
+            } else {
+                extraSecondValue(name, value);
+            }
         }
     }
 

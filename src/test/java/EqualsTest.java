@@ -19,18 +19,16 @@ public class EqualsTest {
     class FlexibleNormal extends FlexibleBase {
 
         @Override
-        public boolean buildResult(ResultBuilder r) {
-            return r.name("x") && r.value(x) ||
-                    r.name("y") && r.value(y);
+        public void buildResult(ResultBuilder builder) {
+            builder.add("x", x).add("y", y);
         }
     }
 
     class FlexibleReversed extends FlexibleBase {
 
         @Override
-        public boolean buildResult(ResultBuilder r) {
-            return r.name("y") && r.value(y) ||
-                    r.name("x") && r.value(x);
+        public void buildResult(ResultBuilder builder) {
+            builder.add("y", y).add("x", x);
         }
 
     }
@@ -40,9 +38,9 @@ public class EqualsTest {
         String z = "";
 
         @Override
-        public boolean buildResult(ResultBuilder r) {
-            return super.buildResult(r) ||
-                    r.name("z") && r.value(z);
+        public void buildResult(ResultBuilder builder) {
+            super.buildResult(builder);
+            builder.add("z", z);
         }
     }
 
@@ -51,9 +49,8 @@ public class EqualsTest {
         String y = "";
 
         @Override
-        public boolean buildResult(ResultBuilder r) {
-            return r.name("x") && r.value(x) ||
-                    r.name("y") && r.value(y);
+        public void buildResult(ResultBuilder builder) {
+            builder.add("x", x).add("y", y);
         }
     }
 
@@ -62,9 +59,9 @@ public class EqualsTest {
         String z = "";
 
         @Override
-        public boolean buildResult(ResultBuilder r) {
-            return super.buildResult(r) ||
-                    r.name("z") && r.value(z);
+        public void buildResult(ResultBuilder builder) {
+            super.buildResult(builder);
+            builder.add("z", z);
         }
     }
 

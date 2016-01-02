@@ -21,8 +21,8 @@ public class CaseClassTest {
             this.c = c;
         }
 
-        public boolean buildResult(ResultBuilder r) {
-            return r.name("a") && r.value(a) || r.name("b") && r.value(b) || r.name("c") && r.value(c);
+        public void buildResult(ResultBuilder builder) {
+            builder.add("a", a).add("b", b).add("c", c);
         }
 
     }

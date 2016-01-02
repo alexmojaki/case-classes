@@ -11,13 +11,10 @@ class GetByNameBuilder extends AbstractResultBuilder {
     private Object value;
 
     @Override
-    public boolean name(String name) {
-        return this.name.equals(name);
+    protected void voidAdd(String name, Object value) {
+        if (this.name.equals(name)) {
+            this.value = value;
+        }
     }
 
-    @Override
-    public boolean value(Object value) {
-        this.value = value;
-        return true;
-    }
 }

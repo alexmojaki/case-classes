@@ -94,22 +94,18 @@ class TableBuilder extends AbstractResultBuilder {
     }
 
     @Override
-    public void simpleName(String name) {
+    protected void voidAdd(String name, Object value) {
         String expectedName = names.get(column);
         if (!name.equals(expectedName)) {
             throw new IllegalArgumentException("Found the name " + name + ", expected " + expectedName);
         }
-    }
-
-    @Override
-    public void simpleValue(Object value) {
         appendCell(String.valueOf(value), value instanceof Number);
     }
 
     private ResultBuilder widthsBuilder = new AbstractResultBuilder() {
 
         @Override
-        public void simpleValue(Object value) {
+        protected void voidAdd(String name, Object value) {
             widths[column] = Math.max(widths[column], String.valueOf(value).length());
             incColumn();
         }

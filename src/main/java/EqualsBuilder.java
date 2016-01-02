@@ -4,10 +4,6 @@ class EqualsBuilder extends DualResultBuilder {
 
     private boolean equal = true;
 
-    private EqualsBuilder(CaseClass o1, CaseClass o2) {
-        super(o1, o2);
-    }
-
     static boolean equals(CaseClass o1, Object o2) {
         if (o1 == o2) {
             return true;
@@ -25,25 +21,19 @@ class EqualsBuilder extends DualResultBuilder {
             return false;
         }
 
-        return new EqualsBuilder(o1, (CaseClass) o2).equal();
-    }
-
-    private boolean equal() {
-        o1.buildResult(this);
-        checkForExtraSecondValue();
-        return equal;
+        EqualsBuilder builder = new EqualsBuilder();
+        builder.buildResult(o1, (CaseClass) o2);
+        return builder.equal;
     }
 
     @Override
-    protected boolean apply(String name1, Object value1, String name2, Object value2) {
-        equal = name1.equals(name2) && Objects.equals(value1, value2);
-        return !equal;
+    protected void apply(String name1, Object value1, String name2, Object value2) {
+        equal = equal && name1.equals(name2) && Objects.equals(value1, value2);
     }
 
     @Override
-    protected boolean extraFirstValue(String name, Object value) {
+    protected void extraFirstValue(String name, Object value) {
         equal = false;
-        return true;
     }
 
     @Override

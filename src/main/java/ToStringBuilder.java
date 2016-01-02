@@ -14,7 +14,7 @@ class ToStringBuilder extends AbstractResultBuilder {
     }
 
     @Override
-    public void simpleName(String name) {
+    protected void voidAdd(String name, Object value) {
         if (first) {
             first = false;
         } else {
@@ -22,10 +22,7 @@ class ToStringBuilder extends AbstractResultBuilder {
         }
         stringBuilder.append(name);
         stringBuilder.append(" = ");
-    }
-
-    @Override
-    public void simpleValue(Object value) {
         stringBuilder.append(value);
     }
+
 }

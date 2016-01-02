@@ -18,7 +18,7 @@ class CollectionBuilder<E> extends AbstractResultBuilder {
     }
 
     @Override
-    public void simpleValue(Object value) {
+    public void voidAdd(String name, Object value) {
         collection.add(type.cast(value));
     }
 }

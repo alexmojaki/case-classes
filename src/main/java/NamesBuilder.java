@@ -12,9 +12,8 @@ class NamesBuilder extends AbstractResultBuilder {
     }
 
     @Override
-    public boolean name(String name) {
+    protected void voidAdd(String name, Object value) {
         collection.add(name);
-        return false;
     }
 
 }

@@ -13,8 +13,8 @@ class ValueCounter extends AbstractResultBuilder {
     }
 
     @Override
-    public boolean name(String name) {
+    protected void voidAdd(String name, Object value) {
         count++;
-        return false;
     }
+
 }

@@ -19,10 +19,8 @@ public class TableTest {
         }
 
         @Override
-        public boolean buildResult(ResultBuilder r) {
-            return r.name("First name") && r.value(firstName) ||
-                    r.name("Last name") && r.value(lastName) ||
-                    r.name("Age") && r.value(age);
+        public void buildResult(ResultBuilder builder) {
+            builder.add("First name", firstName).add("Last name", lastName).add("Age", age);
         }
     }
 
