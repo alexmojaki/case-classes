@@ -8,7 +8,7 @@ class HashCodeBuilder extends AbstractResultBuilder {
         return builder.result;
     }
 
-    private int result = 17;
+    private int result = 1;
 
     @Override
     protected void simpleAdd(String name, Object value) {
@@ -17,42 +17,42 @@ class HashCodeBuilder extends AbstractResultBuilder {
 
     @Override
     protected void simpleAdd(String name, boolean value) {
-        extendHashCode(value ? 1 : 0);
+        extendHashCode(Boolean.hashCode(value));
     }
 
     @Override
     protected void simpleAdd(String name, int value) {
-        extendHashCode(value);
+        extendHashCode(Integer.hashCode(value));
     }
 
     @Override
     protected void simpleAdd(String name, char value) {
-        extendHashCode((int) value);
+        extendHashCode(Character.hashCode(value));
     }
 
     @Override
     protected void simpleAdd(String name, byte value) {
-        extendHashCode((int) value);
+        extendHashCode(Byte.hashCode(value));
     }
 
     @Override
     protected void simpleAdd(String name, short value) {
-        extendHashCode((int) value);
+        extendHashCode(Short.hashCode(value));
     }
 
     @Override
     protected void simpleAdd(String name, long value) {
-        extendHashCode((int) (value ^ (value >>> 32)));
+        extendHashCode(Long.hashCode(value));
     }
 
     @Override
     protected void simpleAdd(String name, float value) {
-        extendHashCode(Float.floatToIntBits(value));
+        extendHashCode(Float.hashCode(value));
     }
 
     @Override
     protected void simpleAdd(String name, double value) {
-        simpleAdd(name, Double.doubleToLongBits(value));
+        extendHashCode(Double.hashCode(value));
     }
 
     private void extendHashCode(int hash) {

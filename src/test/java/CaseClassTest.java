@@ -6,6 +6,7 @@ import org.junit.rules.ExpectedException;
 import java.util.*;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertTrue;
 
 public class CaseClassTest {
@@ -109,21 +110,99 @@ public class CaseClassTest {
 
     @Test
     public void testNoNullNameInAbstractResultBuilder() {
-        exception.expect(IllegalArgumentException.class);
-        //noinspection ResultOfMethodCallIgnored
-        new AbstractCaseClass() {
+        for (CaseClass caseClass : new CaseClass[]{
+                new AbstractCaseClass() {
 
-            @Override
-            public void buildResult(ResultBuilder builder) {
-                builder.add(null, 1);
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, true);
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, '1');
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, (byte) 1);
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, (short) 1);
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, 1);
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, 1L);
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, 1f);
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, 1.0);
+                    }
+                },
+                new AbstractCaseClass() {
+
+                    @Override
+                    public void buildResult(ResultBuilder builder) {
+                        builder.add(null, "1");
+                    }
+                }
+        }) {
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                caseClass.hashCode();
+            } catch (IllegalArgumentException ignored) {
+                continue;
             }
-        }.hashCode();
+            fail();
+        }
     }
 
     @Test
     public void testNoNullNameInSimpleCaseClass() {
         exception.expect(IllegalArgumentException.class);
-        new SimpleCaseClass(null, 1);
+        new SimpleCaseClass(null, "");
     }
 
+
+    @Test
+    public void testHashCodePrimitives() {
+        Object[] objects = {true, false, 1, 2, 1L, 2L, 1f, 2f, 1.0, 2.0, (byte) 1, (byte) 2, (short) 1, (short) 2, "1", "2", '1', '2'};
+        AbstractCaseClass caseClass = new AbstractCaseClass() {
+
+            @Override
+            public void buildResult(ResultBuilder builder) {
+                builder.add("", true).add("", false).add("", 1).add("", 2).add("", 1L).add("", 2L).add("", 1f).add("", 2f).add("", 1.0).add("", 2.0).add("", (byte) 1).add("", (byte) 2).add("", (short) 1).add("", (short) 2).add("", "1").add("", "2").add("", '1').add("", '2');
+            }
+        };
+        assertEquals(Objects.hash(objects), caseClass.hashCode());
+        assertEquals(Arrays.asList(objects), CaseClasses.values(caseClass));
+    }
 }
