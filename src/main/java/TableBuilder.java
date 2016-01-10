@@ -97,7 +97,8 @@ class TableBuilder extends AbstractResultBuilder {
     protected void voidAdd(String name, Object value) {
         String expectedName = names.get(column);
         if (!name.equals(expectedName)) {
-            throw new IllegalArgumentException("Found the name " + name + ", expected " + expectedName);
+            throw new IllegalArgumentException("Found the name " + name + ", expected " + expectedName +
+                    ". Ensure that every value has the same sequence of names.");
         }
         appendCell(String.valueOf(value), value instanceof Number);
     }

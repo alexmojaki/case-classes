@@ -1,5 +1,7 @@
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.*;
 
@@ -7,6 +9,9 @@ import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CaseClassTest {
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     private X x;
 
@@ -71,6 +76,7 @@ public class CaseClassTest {
     @Test
     public void testMap() {
         Map<String, Integer> map = CaseClasses.toMap(x, Integer.class);
+        assertEquals(map, CaseClasses.toMap(x));
         assertEquals(new HashMap<String, Integer>() {
             {
                 put("a", 1);
@@ -78,5 +84,46 @@ public class CaseClassTest {
                 put("c", 3);
             }
         }, map);
+        TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
+        CaseClasses.putValues(x, treeMap, Integer.class);
+        CaseClasses.putValues(x, treeMap);
+        assertEquals(map, treeMap);
+        CaseClass caseClass1 = CaseClasses.toCaseClass(map);
+        CaseClass caseClass2 = CaseClasses.toCaseClass(treeMap);
+        assertEquals(caseClass1, caseClass2);
+        String expectedString = "MapCaseClass(a = 1, b = 2, c = 3)";
+        assertEquals(expectedString, caseClass1.toString());
+        assertEquals(expectedString, caseClass2.toString());
     }
+
+    @Test
+    public void testIterableToCaseClass() {
+        assertEquals("IterableCaseClass(0 = a, 1 = b, 2 = c)",
+                CaseClasses.toCaseClass(Arrays.asList("a", "b", "c")).toString());
+    }
+
+    @Test
+    public void testValues() {
+        assertEquals(Arrays.asList(1, 2, 3), CaseClasses.values(x));
+    }
+
+    @Test
+    public void testNoNullNameInAbstractResultBuilder() {
+        exception.expect(IllegalArgumentException.class);
+        //noinspection ResultOfMethodCallIgnored
+        new AbstractCaseClass() {
+
+            @Override
+            public void buildResult(ResultBuilder builder) {
+                builder.add(null, 1);
+            }
+        }.hashCode();
+    }
+
+    @Test
+    public void testNoNullNameInSimpleCaseClass() {
+        exception.expect(IllegalArgumentException.class);
+        new SimpleCaseClass().add(null, 1);
+    }
+
 }

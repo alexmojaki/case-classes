@@ -7,6 +7,9 @@ public class SimpleCaseClass extends AbstractCaseClass {
     private List<Object> values = new ArrayList<Object>();
 
     public SimpleCaseClass add(String name, Object value) {
+        if (name == null) {
+            throw new IllegalArgumentException("Name must not be null");
+        }
         names.add(name);
         values.add(value);
         return this;

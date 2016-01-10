@@ -69,31 +69,39 @@ public enum CaseClasses {
         return TableBuilder.getTable(objects);
     }
 
-    public static int countValues(CaseClass obj) {
-        return ValueCounter.countValues(obj);
+    private static class MapCaseClass extends AbstractCaseClass {
+        private Map<? extends String, ?> map;
+
+        @Override
+        public void buildResult(ResultBuilder builder) {
+            for (Map.Entry<? extends String, ?> entry : map.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
     public static CaseClass toCaseClass(final Map<? extends String, ?> map) {
-        return new CaseClass() {
-            @Override
-            public void buildResult(ResultBuilder builder) {
-                for (Map.Entry<? extends String, ?> entry : map.entrySet()) {
-                    builder.add(entry.getKey(), entry.getValue());
-                }
+        MapCaseClass result = new MapCaseClass();
+        result.map = map;
+        return result;
+    }
+
+    private static class IterableCaseClass extends AbstractCaseClass {
+        private Iterable<?> iterable;
+
+        @Override
+        public void buildResult(ResultBuilder builder) {
+            int i = 0;
+            for (Object value : iterable) {
+                builder.add("" + i++, value);
             }
-        };
+        }
     }
 
     public static CaseClass toCaseClass(final Iterable<?> iterable) {
-        return new CaseClass() {
-            @Override
-            public void buildResult(ResultBuilder builder) {
-                int i = 0;
-                for (Object value : iterable) {
-                    builder.add("" + i++, value);
-                }
-            }
-        };
+        IterableCaseClass result = new IterableCaseClass();
+        result.iterable = iterable;
+        return result;
     }
 
     public static void assertEquals(CaseClass expected, CaseClass actual) {
