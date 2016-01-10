@@ -11,7 +11,7 @@ class HashCodeBuilder extends AbstractResultBuilder {
     private int result = 17;
 
     @Override
-    protected void voidAdd(String name, Object value) {
+    protected void simpleAdd(String name, Object value) {
         result = 31 * result + Objects.hashCode(value);
     }
 }

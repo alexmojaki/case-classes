@@ -11,7 +11,7 @@ class GetByNameBuilder extends AbstractResultBuilder {
     private Object value;
 
     @Override
-    protected void voidAdd(String name, Object value) {
+    protected void simpleAdd(String name, Object value) {
         if (this.name.equals(name)) {
             this.value = value;
         }

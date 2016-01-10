@@ -17,7 +17,7 @@ class MapBuilder<V> extends AbstractResultBuilder {
     }
 
     @Override
-    protected void voidAdd(String name, Object value) {
+    protected void simpleAdd(String name, Object value) {
         map.put(name, type.cast(value));
     }
 

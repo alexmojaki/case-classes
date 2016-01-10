@@ -12,7 +12,7 @@ class NamesBuilder extends AbstractResultBuilder {
     }
 
     @Override
-    protected void voidAdd(String name, Object value) {
+    protected void simpleAdd(String name, Object value) {
         collection.add(name);
     }
 

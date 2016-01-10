@@ -17,7 +17,7 @@ public abstract class DualResultBuilder extends AbstractResultBuilder {
     }
 
     @Override
-    protected void voidAdd(String name, Object value) {
+    protected void simpleAdd(String name, Object value) {
         names.add(name);
         values.add(value);
     }
@@ -33,7 +33,7 @@ public abstract class DualResultBuilder extends AbstractResultBuilder {
         private int index;
 
         @Override
-        protected void voidAdd(String name, Object value) {
+        protected void simpleAdd(String name, Object value) {
             if (index < names.size()) {
                 apply(names.get(index), values.get(index), name, value);
                 index++;
