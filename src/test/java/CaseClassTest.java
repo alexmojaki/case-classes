@@ -123,7 +123,7 @@ public class CaseClassTest {
     @Test
     public void testNoNullNameInSimpleCaseClass() {
         exception.expect(IllegalArgumentException.class);
-        new SimpleCaseClass().add(null, 1);
+        new SimpleCaseClass(null, 1);
     }
 
 }

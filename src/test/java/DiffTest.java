@@ -23,14 +23,14 @@ public class DiffTest {
         assertDiff(null, null, null);
         assertDiff(new SimpleCaseClass(), new SimpleCaseClass(), null);
         assertDiff(
-                new SimpleCaseClass().add("a", 1).add("b", 2),
-                new SimpleCaseClass().add("a", 1).add("b", 2),
+                new SimpleCaseClass("a", 1, "b", 2),
+                new SimpleCaseClass("a", 1, "b", 2),
                 null);
     }
 
     @Test
     public void simplyDifferentValues() {
-        assertDiff(new SimpleCaseClass().add("a", 1), new SimpleCaseClass().add("a", 2),
+        assertDiff(new SimpleCaseClass("a", 1), new SimpleCaseClass("a", 2),
                 "Differences:\n" +
                         "\n" +
                         "+------+-------------+--------------+\n" +
@@ -38,7 +38,7 @@ public class DiffTest {
                         "+------+-------------+--------------+\n" +
                         "| a    |           1 |            2 |\n" +
                         "+------+-------------+--------------+\n");
-        assertDiff(new SimpleCaseClass().add("a", 1).add("b", 3), new SimpleCaseClass().add("a", 2).add("b", 4),
+        assertDiff(new SimpleCaseClass("a", 1, "b", 3), new SimpleCaseClass("a", 2, "b", 4),
                 "Differences:\n" +
                         "\n" +
                         "+------+-------------+--------------+\n" +
@@ -48,8 +48,8 @@ public class DiffTest {
                         "| b    |           3 |            4 |\n" +
                         "+------+-------------+--------------+\n");
         assertDiff(
-                new SimpleCaseClass().add("a", 1).add("b", 3),
-                new SimpleCaseClass().add("a", 2).add("b", 3),
+                new SimpleCaseClass("a", 1, "b", 3),
+                new SimpleCaseClass("a", 2, "b", 3),
                 "Differences:\n" +
                         "\n" +
                         "+------+-------------+--------------+\n" +
@@ -66,8 +66,8 @@ public class DiffTest {
                         "| b    |     3 |\n" +
                         "+------+-------+\n");
         assertDiff(
-                new SimpleCaseClass().add("a", 1).add("b", 2),
-                new SimpleCaseClass().add("a", 1).add("b", 3),
+                new SimpleCaseClass("a", 1, "b", 2),
+                new SimpleCaseClass("a", 1, "b", 3),
                 "Differences:\n" +
                         "\n" +
                         "+------+-------------+--------------+\n" +
@@ -84,8 +84,8 @@ public class DiffTest {
                         "| a    |     1 |\n" +
                         "+------+-------+\n");
         assertDiff(
-                new SimpleCaseClass().add("a", 1).add("b", 3).add("c", 4).add("d", 6),
-                new SimpleCaseClass().add("a", 2).add("b", 3).add("c", 5).add("d", 6),
+                new SimpleCaseClass("a", 1, "b", 3, "c", 4, "d", 6),
+                new SimpleCaseClass("a", 2, "b", 3, "c", 5, "d", 6),
                 "Differences:\n" +
                         "\n" +
                         "+------+-------------+--------------+\n" +
@@ -107,23 +107,23 @@ public class DiffTest {
 
     @Test
     public void differentNames() {
-        assertDiff(new SimpleCaseClass().add("a", 1).add("b", 2), new SimpleCaseClass().add("a", 1),
+        assertDiff(new SimpleCaseClass("a", 1, "b", 2), new SimpleCaseClass("a", 1),
                 "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(a = 1, b = 2)\n" +
                         "Actual: SimpleCaseClass(a = 1)");
-        assertDiff(new SimpleCaseClass().add("a", 1).add("b", 2), new SimpleCaseClass().add("a", 3),
+        assertDiff(new SimpleCaseClass("a", 1, "b", 2), new SimpleCaseClass("a", 3),
                 "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(a = 1, b = 2)\n" +
                         "Actual: SimpleCaseClass(a = 3)");
-        assertDiff(new SimpleCaseClass().add("a", 1), new SimpleCaseClass().add("a", 1).add("b", 2),
+        assertDiff(new SimpleCaseClass("a", 1), new SimpleCaseClass("a", 1, "b", 2),
                 "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(a = 1)\n" +
                         "Actual: SimpleCaseClass(a = 1, b = 2)");
-        assertDiff(new SimpleCaseClass().add("b", 2).add("a", 1), new SimpleCaseClass().add("a", 1).add("b", 2),
+        assertDiff(new SimpleCaseClass("b", 2, "a", 1), new SimpleCaseClass("a", 1, "b", 2),
                 "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(b = 2, a = 1)\n" +
                         "Actual: SimpleCaseClass(a = 1, b = 2)");
-        assertDiff(new SimpleCaseClass().add("b", 1), new SimpleCaseClass().add("a", 1),
+        assertDiff(new SimpleCaseClass("b", 1), new SimpleCaseClass("a", 1),
                 "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(b = 1)\n" +
                         "Actual: SimpleCaseClass(a = 1)");
@@ -157,7 +157,7 @@ public class DiffTest {
 
     @Test
     public void differentClasses() {
-        assertDiff(new A(), new SimpleCaseClass().add("a", 1),
+        assertDiff(new A(), new SimpleCaseClass("a", 1),
                 "The expected class is DiffTest$A but the actual class is SimpleCaseClass");
     }
 
@@ -171,7 +171,7 @@ public class DiffTest {
     public void unequalButSimilar() {
         assertDiff(new B(), new A(),
                 "The value components of the objects are equal.\n" +
-                "Expected: BBB\n" +
-                "Actual: A(a = 1)");
+                        "Expected: BBB\n" +
+                        "Actual: A(a = 1)");
     }
 }

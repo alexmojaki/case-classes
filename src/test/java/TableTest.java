@@ -59,12 +59,12 @@ public class TableTest {
     @Test
     public void testMismatchedNames() {
         exception.expect(IllegalArgumentException.class);
-        CaseClasses.getTable(Arrays.asList(new SimpleCaseClass().add("a", 1), new SimpleCaseClass().add("b", 1)));
+        CaseClasses.getTable(Arrays.asList(new SimpleCaseClass("a", 1), new SimpleCaseClass("b", 1)));
     }
 
     @Test
     public void testSingleUseIterable() {
-        final Iterator<SimpleCaseClass> iterator = Arrays.asList(new SimpleCaseClass().add("a", 1), new SimpleCaseClass().add("a", 2)).iterator();
+        final Iterator<SimpleCaseClass> iterator = Arrays.asList(new SimpleCaseClass("a", 1), new SimpleCaseClass("a", 2)).iterator();
         Iterable<SimpleCaseClass> iterable = new Iterable<SimpleCaseClass>() {
 
             @Override

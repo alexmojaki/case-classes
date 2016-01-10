@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class SimpleCaseClass extends AbstractCaseClass {
+
+    private List<String> names = new ArrayList<String>();
+    private List<Object> values = new ArrayList<Object>();
+
+    public SimpleCaseClass() {
+    }
+
+{{py:
+from itertools import product
+
+def signature(n):
+    return ', '.join('String name{0}, Object value{0}'.format(i) for i in range(1, n+1))
+
+def args(n):
+    return ', '.join('name{0}, value{0}'.format(i) for i in range(1, n+1))
+
+def is_any_name_null(n):
+    return ' || '.join('name%i == null' % i for i in range(1, n+1))
+}}
+
+    {{for n in range(1, 11)}}
+    public SimpleCaseClass({{signature(n)}}) {
+        add({{args(n)}});
+    }
+
+    public SimpleCaseClass add({{signature(n)}}) {
+        ensureNoNulls({{is_any_name_null(n)}});
+        {{for field, i in product(('name', 'value'), range(1, n+1))}}
+        {{field}}s.add({{field}}{{i}});
+        {{endfor}}
+        return this;
+    }
+    {{endfor}}
+
+    private void ensureNoNulls(boolean anyNulls) {
+        if (anyNulls) {
+            throw new IllegalArgumentException("Name must not be null");
+        }
+    }
+
+    @Override
+    public void buildResult(ResultBuilder builder) {
+        int size = names.size();
+        for (int i = 0; i < size; i++) {
+            builder.add(names.get(i), values.get(i));
+        }
+    }
+}

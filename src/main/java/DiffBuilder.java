@@ -68,11 +68,11 @@ class DiffBuilder extends DualResultBuilder {
         if (!namesMatch) {
             return;
         }
-        SimpleCaseClass row = new SimpleCaseClass().add("Name", name1);
+        SimpleCaseClass row = new SimpleCaseClass("Name", name1);
         if (Objects.equals(value1, value2)) {
             matchingValues.add(row.add("Value", value1));
         } else {
-            differingValues.add(row.add("First value", value1).add("Second value", value2));
+            differingValues.add(row.add("First value", value1, "Second value", value2));
         }
     }
 }
