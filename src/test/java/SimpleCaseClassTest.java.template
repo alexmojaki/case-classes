@@ -1,0 +1,20 @@
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class SimpleCaseClassTest {
+
+{{py:
+def string_contents(n):
+    return ', '.join('{0} = {0}'.format(i) for i in range(1, n+1))
+
+def args(n):
+    return ', '.join('"{0}", {0}'.format(i) for i in range(1, n+1))
+}}
+    @Test
+    public void testConstructors() {
+        {{for n in range(11)}}
+        assertEquals("SimpleCaseClass({{string_contents(n)}})", new SimpleCaseClass({{args(n)}}).toString());
+        {{endfor}}
+    }
+}
