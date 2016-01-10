@@ -126,8 +126,10 @@ public class EqualsTest {
                 ),
                 asList(new FlexibleWithInterface2(), new FlexibleWithInterface2(), new FlexibleWithInterface2() {
                 }, new FlexibleWithInterface2() {
-                })
-        );
+                }),
+                asList(new SimpleCaseClass().add("a", 1).add("b", "C"), new SimpleCaseClass().add("a", 1).add("b", "C")),
+                asList(new SimpleCaseClass().add("a", 1).add("b", "D"), new SimpleCaseClass().add("a", 1).add("b", "D"))
+                );
     }
 
 }

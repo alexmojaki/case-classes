@@ -4,7 +4,7 @@ import java.util.List;
 
 class TableBuilder extends AbstractResultBuilder {
 
-    static <E extends CaseClass> String makeTable(Iterable<E> objects) {
+    static <E extends CaseClass> String getTable(Iterable<E> objects) {
         Collection<E> objectCollection;
         if (objects instanceof Collection) {
             objectCollection = (Collection<E>) objects;

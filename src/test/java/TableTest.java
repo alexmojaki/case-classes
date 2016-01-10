@@ -34,7 +34,7 @@ public class TableTest {
                 "| Arnold     | Schwarzenegger |   68 |\n" +
                 "| null       | null           | null |\n" +
                 "+------------+----------------+------+\n";
-        String actual = CaseClasses.makeTable(Arrays.asList(
+        String actual = CaseClasses.getTable(Arrays.asList(
                 new Person("John", "Doe", 23),
                 new Person("Arnold", "Schwarzenegger", 68),
                 new Person(null, null, null)

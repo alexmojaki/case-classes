@@ -65,8 +65,8 @@ public enum CaseClasses {
         return toMap(obj, Object.class);
     }
 
-    public static String makeTable(Iterable<? extends CaseClass> objects) {
-        return TableBuilder.makeTable(objects);
+    public static String getTable(Iterable<? extends CaseClass> objects) {
+        return TableBuilder.getTable(objects);
     }
 
     public static int countValues(CaseClass obj) {
@@ -94,6 +94,14 @@ public enum CaseClasses {
                 }
             }
         };
+    }
+
+    public static void assertEquals(CaseClass expected, CaseClass actual) {
+        DiffBuilder.assertEquals(expected, actual);
+    }
+
+    public static String getDifferenceReport(CaseClass expected, CaseClass actual) {
+        return DiffBuilder.getDifferenceReport(expected, actual);
     }
 
 }
