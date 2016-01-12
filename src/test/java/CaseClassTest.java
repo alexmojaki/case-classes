@@ -194,12 +194,12 @@ public class CaseClassTest {
 
     @Test
     public void testHashCodePrimitives() {
-        Object[] objects = {true, false, 1, 2, 1L, 2L, 1f, 2f, 1.0, 2.0, (byte) 1, (byte) 2, (short) 1, (short) 2, "1", "2", '1', '2'};
+        Object[] objects = {true, false, 1, 2, 1L, 2L, 1f, 2f, 1.0, 2.0, (byte) 1, (byte) 2, (short) 1, (short) 2, "1", "2", '1', '2', null};
         AbstractCaseClass caseClass = new AbstractCaseClass() {
 
             @Override
             public void buildResult(ResultBuilder builder) {
-                builder.add("", true).add("", false).add("", 1).add("", 2).add("", 1L).add("", 2L).add("", 1f).add("", 2f).add("", 1.0).add("", 2.0).add("", (byte) 1).add("", (byte) 2).add("", (short) 1).add("", (short) 2).add("", "1").add("", "2").add("", '1').add("", '2');
+                builder.add("", true).add("", false).add("", 1).add("", 2).add("", 1L).add("", 2L).add("", 1f).add("", 2f).add("", 1.0).add("", 2.0).add("", (byte) 1).add("", (byte) 2).add("", (short) 1).add("", (short) 2).add("", "1").add("", "2").add("", '1').add("", '2').add("", null);
             }
         };
         assertEquals(Objects.hash(objects), caseClass.hashCode());
