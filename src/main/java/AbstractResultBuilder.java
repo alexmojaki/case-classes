@@ -36,81 +36,54 @@ public abstract class AbstractResultBuilder implements ResultBuilder {
 
     @Override
     public final ResultBuilder add(String name, Object value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, char value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, boolean value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, byte value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, short value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, int value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, long value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, float value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
 
     @Override
     public final ResultBuilder add(String name, double value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name must not be null");
-        }
         simpleAdd(name, value);
         return this;
     }
