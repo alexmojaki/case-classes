@@ -1,3 +1,7 @@
+package com.github.alexmojaki.caseclasses.tests;
+
+import com.github.alexmojaki.caseclasses.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static junit.framework.TestCase.fail;
@@ -10,7 +14,7 @@ public class DiffTest {
             CaseClasses.assertEquals(o1, o2);
         } catch (AssertionError e) {
             assertEquals("Expected != actual. " + expectedReport, e.getMessage());
-            assertEquals(expectedReport, CaseClasses.getDifferenceReport(o1, o2));
+            Assert.assertEquals(expectedReport, CaseClasses.getDifferenceReport(o1, o2));
             return;
         }
         if (expectedReport != null) {
@@ -158,7 +162,7 @@ public class DiffTest {
     @Test
     public void differentClasses() {
         assertDiff(new A(), new SimpleCaseClass("a", 1),
-                "The expected class is DiffTest$A but the actual class is SimpleCaseClass");
+                "The expected class is com.github.alexmojaki.caseclasses.tests.DiffTest$A but the actual class is com.github.alexmojaki.caseclasses.SimpleCaseClass");
     }
 
     @Test

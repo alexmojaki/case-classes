@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 import java.util.Objects;
 
 class HashCodeBuilder extends AbstractResultBuilder {

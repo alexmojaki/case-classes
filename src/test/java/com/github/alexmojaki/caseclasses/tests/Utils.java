@@ -1,3 +1,7 @@
+package com.github.alexmojaki.caseclasses.tests;
+
+import com.github.alexmojaki.caseclasses.CaseClass;
+import com.github.alexmojaki.caseclasses.CaseClasses;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -90,6 +94,10 @@ public class Utils {
                 asList(2, 2),
                 asList(2, 2),
                 asList(3, 3, 3));
+    }
+
+    public static int compare(CaseClass o1, CaseClass o2) {
+        return CaseClasses.COMPARATOR.compare(o1, o2);
     }
 
 }

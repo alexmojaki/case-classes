@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 public abstract class AbstractCaseClass implements CaseClass {
 
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")

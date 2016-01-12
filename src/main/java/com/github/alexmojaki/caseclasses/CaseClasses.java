@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 import java.util.*;
 
 public enum CaseClasses {
@@ -111,5 +113,12 @@ public enum CaseClasses {
     public static String getDifferenceReport(CaseClass expected, CaseClass actual) {
         return DiffBuilder.getDifferenceReport(expected, actual);
     }
+
+    public static final Comparator<CaseClass> COMPARATOR = new Comparator<CaseClass>() {
+        @Override
+        public int compare(CaseClass o1, CaseClass o2) {
+            return ComparisonBuilder.compare(o1, o2);
+        }
+    };
 
 }

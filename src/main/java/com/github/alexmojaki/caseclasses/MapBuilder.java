@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 import java.util.Map;
 
 class MapBuilder<V> extends AbstractResultBuilder {

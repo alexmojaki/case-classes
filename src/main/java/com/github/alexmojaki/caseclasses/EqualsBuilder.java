@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 import java.util.Objects;
 
 class EqualsBuilder extends DualResultBuilder {
@@ -36,7 +38,7 @@ class EqualsBuilder extends DualResultBuilder {
 
     @Override
     protected void apply(String name1, Object value1, String name2, Object value2) {
-        equal &= name1.equals(name2) && Objects.equals(value1, value2);
+        equal = equal && name1.equals(name2) && Objects.equals(value1, value2);
     }
 
     @Override

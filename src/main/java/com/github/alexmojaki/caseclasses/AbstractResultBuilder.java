@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 public abstract class AbstractResultBuilder implements ResultBuilder {
 
     protected abstract void simpleAdd(String name, Object value);

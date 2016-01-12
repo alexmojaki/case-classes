@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 class GetByNameBuilder extends AbstractResultBuilder {
 
     static Object getValueByName(CaseClass obj, String name) {

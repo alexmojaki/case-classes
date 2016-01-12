@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 class ToStringBuilder extends AbstractResultBuilder {
 
     private final StringBuilder stringBuilder = new StringBuilder(40);

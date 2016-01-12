@@ -1,3 +1,5 @@
+package com.github.alexmojaki.caseclasses;
+
 import java.util.Collection;
 
 class CollectionBuilder<E> extends AbstractResultBuilder {

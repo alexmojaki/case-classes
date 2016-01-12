@@ -1,3 +1,9 @@
+package com.github.alexmojaki.caseclasses.tests;
+
+import com.github.alexmojaki.caseclasses.AbstractCaseClass;
+import com.github.alexmojaki.caseclasses.FlexiblyEqual;
+import com.github.alexmojaki.caseclasses.ResultBuilder;
+import com.github.alexmojaki.caseclasses.SimpleCaseClass;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;

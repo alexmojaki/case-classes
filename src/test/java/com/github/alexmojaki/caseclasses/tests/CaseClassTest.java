@@ -1,3 +1,7 @@
+package com.github.alexmojaki.caseclasses.tests;
+
+import com.github.alexmojaki.caseclasses.*;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -6,7 +10,6 @@ import org.junit.rules.ExpectedException;
 import java.util.*;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertTrue;
 
 public class CaseClassTest {
@@ -47,14 +50,14 @@ public class CaseClassTest {
 
     @Test
     public void testToString() {
-        assertEquals("X(a = 1, b = 2, c = 3)", x.toString());
+        TestCase.assertEquals("X(a = 1, b = 2, c = 3)", x.toString());
     }
 
     @Test
     public void testGetByName() {
-        assertEquals(x.a, CaseClasses.getValueByName(x, "a"));
-        assertEquals(x.b, CaseClasses.getValueByName(x, "b"));
-        assertEquals(x.c, CaseClasses.getValueByName(x, "c"));
+        TestCase.assertEquals(x.a, CaseClasses.getValueByName(x, "a"));
+        TestCase.assertEquals(x.b, CaseClasses.getValueByName(x, "b"));
+        TestCase.assertEquals(x.c, CaseClasses.getValueByName(x, "c"));
     }
 
     @Test
@@ -77,7 +80,7 @@ public class CaseClassTest {
     @Test
     public void testMap() {
         Map<String, Integer> map = CaseClasses.toMap(x, Integer.class);
-        assertEquals(map, CaseClasses.toMap(x));
+        TestCase.assertEquals(map, CaseClasses.toMap(x));
         assertEquals(new HashMap<String, Integer>() {
             {
                 put("a", 1);
@@ -91,21 +94,21 @@ public class CaseClassTest {
         assertEquals(map, treeMap);
         CaseClass caseClass1 = CaseClasses.toCaseClass(map);
         CaseClass caseClass2 = CaseClasses.toCaseClass(treeMap);
-        assertEquals(caseClass1, caseClass2);
+        TestCase.assertEquals(caseClass1, caseClass2);
         String expectedString = "MapCaseClass(a = 1, b = 2, c = 3)";
-        assertEquals(expectedString, caseClass1.toString());
-        assertEquals(expectedString, caseClass2.toString());
+        TestCase.assertEquals(expectedString, caseClass1.toString());
+        TestCase.assertEquals(expectedString, caseClass2.toString());
     }
 
     @Test
     public void testIterableToCaseClass() {
-        assertEquals("IterableCaseClass(0 = a, 1 = b, 2 = c)",
+        TestCase.assertEquals("IterableCaseClass(0 = a, 1 = b, 2 = c)",
                 CaseClasses.toCaseClass(Arrays.asList("a", "b", "c")).toString());
     }
 
     @Test
     public void testValues() {
-        assertEquals(Arrays.asList(1, 2, 3), CaseClasses.values(x));
+        TestCase.assertEquals(Arrays.asList(1, 2, 3), CaseClasses.values(x));
     }
 
     @Test
@@ -125,7 +128,7 @@ public class CaseClassTest {
                 builder.add("", true).add("", false).add("", 1).add("", 2).add("", 1L).add("", 2L).add("", 1f).add("", 2f).add("", 1.0).add("", 2.0).add("", (byte) 1).add("", (byte) 2).add("", (short) 1).add("", (short) 2).add("", "1").add("", "2").add("", '1').add("", '2').add("", null);
             }
         };
-        assertEquals(Objects.hash(objects), caseClass.hashCode());
-        assertEquals(Arrays.asList(objects), CaseClasses.values(caseClass));
+        TestCase.assertEquals(Objects.hash(objects), caseClass.hashCode());
+        TestCase.assertEquals(Arrays.asList(objects), CaseClasses.values(caseClass));
     }
 }

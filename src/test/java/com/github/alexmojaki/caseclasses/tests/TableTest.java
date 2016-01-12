@@ -1,3 +1,7 @@
+package com.github.alexmojaki.caseclasses.tests;
+
+import com.github.alexmojaki.caseclasses.*;
+import junit.framework.TestCase;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -53,7 +57,7 @@ public class TableTest {
     @Test
     public void testEmptyTable() {
         List<CaseClass> emptyList = Collections.emptyList();
-        assertEquals("[Empty table]", CaseClasses.getTable(emptyList));
+        TestCase.assertEquals("[Empty table]", CaseClasses.getTable(emptyList));
     }
 
     @Test
@@ -72,7 +76,7 @@ public class TableTest {
                 return iterator;
             }
         };
-        assertEquals(
+        TestCase.assertEquals(
                 "+---+\n" +
                         "| a |\n" +
                         "+---+\n" +

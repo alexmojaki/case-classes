@@ -1,6 +1,8 @@
-import org.junit.Test;
+package com.github.alexmojaki.caseclasses.tests;
 
-import static org.junit.Assert.assertEquals;
+import com.github.alexmojaki.caseclasses.SimpleCaseClass;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class SimpleCaseClassTest {
 
