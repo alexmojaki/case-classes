@@ -1,10 +1,5 @@
 package com.github.alexmojaki.caseclasses;
 
-import com.google.common.primitives.*;
-
-import java.util.*;
-import java.util.function.Consumer;
-
 public abstract class AbstractResultBuilder implements ResultBuilder {
 
     protected abstract void simpleAdd(String name, Object value);

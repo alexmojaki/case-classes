@@ -4,7 +4,6 @@ import com.github.alexmojaki.caseclasses.CaseClass;
 import com.github.alexmojaki.caseclasses.ResultBuilder;
 import com.github.alexmojaki.caseclasses.SimpleCaseClass;
 import com.github.alexmojaki.caseclasses.serialization.CSVWriter;
-import com.google.common.io.Files;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -12,6 +11,7 @@ import org.junit.rules.ExpectedException;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -64,13 +64,7 @@ public class CSVWriterTest {
 
         StringWriter stringWriter = new StringWriter();
         configureWriter(new CSVWriter(stringWriter)).write(rowList);
-        String expectedString;
-        try {
-            expectedString = Files.toString(goldenFile, utf8);
-        } catch (IOException e) {
-            fail();
-            return;
-        }
+        String expectedString = fileToString(goldenFile, utf8);
         assertEquals(expectedString, stringWriter.toString());
 
         for (Charset charset : Arrays.asList(utf8, StandardCharsets.ISO_8859_1)) {
@@ -86,12 +80,21 @@ public class CSVWriterTest {
 
     }
 
-    private void assertFilesEqual(File goldenFile, File newFile) {
+    private void assertFilesEqual(File file1, File file2) {
+        assertArrayEquals(fileToBytes(file1), fileToBytes(file2));
+    }
+
+    private byte[] fileToBytes(File file) {
         try {
-            assertTrue(Files.equal(goldenFile, newFile));
+            return Files.readAllBytes(file.toPath());
         } catch (IOException e) {
             fail();
+            throw new AssertionError();
         }
+    }
+
+    private String fileToString(File file, Charset charset) {
+        return new String(fileToBytes(file), charset);
     }
 
     @Test
