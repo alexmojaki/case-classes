@@ -29,24 +29,18 @@ public enum CaseClasses {
         CollectionBuilder.addValues(obj, collection);
     }
 
-    public static <E> List<E> values(CaseClass obj, Class<E> type) {
+    public static <E> List<E> getValuesList(CaseClass obj, Class<E> type) {
         List<E> values = new ArrayList<E>();
         addValues(obj, values, type);
         return values;
     }
 
-    public static List values(CaseClass obj) {
-        return values(obj, Object.class);
-    }
-
-    public static <T extends Collection<String>> void addNames(CaseClass obj, T collection) {
-        NamesBuilder.addNames(obj, collection);
+    public static List getValuesList(CaseClass obj) {
+        return getValuesList(obj, Object.class);
     }
 
     public static List<String> getNameList(CaseClass obj) {
-        List<String> names = new ArrayList<String>();
-        addNames(obj, names);
-        return names;
+        return NamesBuilder.getNameList(obj);
     }
 
     public static <T extends Map<String, V>, V> void putValues(CaseClass obj, T map, Class<V> type) {

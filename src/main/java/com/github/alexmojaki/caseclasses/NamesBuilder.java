@@ -1,21 +1,26 @@
 package com.github.alexmojaki.caseclasses;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 class NamesBuilder extends AbstractResultBuilder {
 
-    private Collection<String> collection;
+    private List<String> list = new ArrayList<String>();
 
-    @SuppressWarnings("unchecked")
-    static <T extends Collection<String>> void addNames(CaseClass obj, T collection) {
+    public static List<String> getNameList(CaseClass obj) {
         NamesBuilder builder = new NamesBuilder();
-        builder.collection = collection;
         obj.buildResult(builder);
+        return builder.list;
     }
 
     @Override
     protected void simpleAdd(String name, Object value) {
-        collection.add(name);
+        list.add(name);
+    }
+
+    @Override
+    protected boolean convertArraysToLists() {
+        return false;
     }
 
 }

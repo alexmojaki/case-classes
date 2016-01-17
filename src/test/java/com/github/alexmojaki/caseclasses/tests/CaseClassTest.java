@@ -62,7 +62,7 @@ public class CaseClassTest {
 
     @Test
     public void testCollection() {
-        List<Integer> list = CaseClasses.values(x, Integer.class);
+        List<Integer> list = CaseClasses.getValuesList(x, Integer.class);
         assertEquals(Arrays.asList(1, 2, 3), list);
         Set<Integer> set = new HashSet<Integer>();
         CaseClasses.addValues(x, set, Integer.class);
@@ -108,7 +108,7 @@ public class CaseClassTest {
 
     @Test
     public void testValues() {
-        TestCase.assertEquals(Arrays.asList(1, 2, 3), CaseClasses.values(x));
+        TestCase.assertEquals(Arrays.asList(1, 2, 3), CaseClasses.getValuesList(x));
     }
 
     @Test
@@ -129,6 +129,6 @@ public class CaseClassTest {
             }
         };
         TestCase.assertEquals(Objects.hash(objects), caseClass.hashCode());
-        TestCase.assertEquals(Arrays.asList(objects), CaseClasses.values(caseClass));
+        TestCase.assertEquals(Arrays.asList(objects), CaseClasses.getValuesList(caseClass));
     }
 }

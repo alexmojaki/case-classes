@@ -23,4 +23,9 @@ class CollectionBuilder<E> extends AbstractResultBuilder {
     public void simpleAdd(String name, Object value) {
         collection.add(type.cast(value));
     }
+
+    @Override
+    protected boolean convertArraysToLists() {
+        return false;
+    }
 }

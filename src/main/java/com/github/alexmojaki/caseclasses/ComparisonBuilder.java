@@ -51,7 +51,12 @@ class ComparisonBuilder extends DualResultBuilder {
                     CaseClasses.toCaseClass((List) value1),
                     CaseClasses.toCaseClass((List) value2)));
         } else {
-            throw new ClassCastException("Couldn't compare values with name " + name1);
+            throw new ClassCastException("Couldn't compare getValuesList with name " + name1);
         }
+    }
+
+    @Override
+    protected boolean convertArraysToLists() {
+        return true;
     }
 }

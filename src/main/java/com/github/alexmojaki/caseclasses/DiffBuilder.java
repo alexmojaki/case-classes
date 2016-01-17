@@ -37,7 +37,7 @@ class DiffBuilder extends DualResultBuilder {
             }
             return builder.getTables();
         } else {
-            return "The names of the values do not match.\n" +
+            return "The names of the getValuesList do not match.\n" +
                     "Expected: " + CaseClasses.toString(expected) + "\n" +
                     "Actual: " + CaseClasses.toString(actual);
         }
@@ -47,7 +47,7 @@ class DiffBuilder extends DualResultBuilder {
         String tables = "Differences:\n\n" + CaseClasses.getTable(differingValues);
         if (!matchingValues.isEmpty()) {
             tables += "\n" +
-                    "Matching values:\n\n" + CaseClasses.getTable(matchingValues);
+                    "Matching getValuesList:\n\n" + CaseClasses.getTable(matchingValues);
         }
         return tables;
     }
@@ -76,5 +76,10 @@ class DiffBuilder extends DualResultBuilder {
         } else {
             differingValues.add(row.add("First value", value1, "Second value", value2));
         }
+    }
+
+    @Override
+    protected boolean convertArraysToLists() {
+        return true;
     }
 }

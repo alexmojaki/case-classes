@@ -4,8 +4,6 @@ import com.github.alexmojaki.caseclasses.CaseClass;
 import com.github.alexmojaki.caseclasses.CaseClasses;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;

@@ -3,13 +3,13 @@ package com.github.alexmojaki.caseclasses;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class DualResultBuilder extends AbstractResultBuilder {
+public abstract class DualResultBuilder {
 
     private List<String> names = new ArrayList<String>();
     private List<Object> values = new ArrayList<Object>();
 
     protected void buildResult(CaseClass o1, CaseClass o2) {
-        o1.buildResult(this);
+        o1.buildResult(new FirstResultBuilder());
         SecondResultBuilder secondResultBuilder = new SecondResultBuilder();
         o2.buildResult(secondResultBuilder);
         int size = names.size();
@@ -18,17 +18,26 @@ public abstract class DualResultBuilder extends AbstractResultBuilder {
         }
     }
 
-    @Override
-    protected void simpleAdd(String name, Object value) {
-        names.add(name);
-        values.add(value);
-    }
-
     protected abstract void extraFirstValue(String name, Object value);
 
     protected abstract void extraSecondValue(String name, Object value);
 
     protected abstract void apply(String name1, Object value1, String name2, Object value2);
+
+    private class FirstResultBuilder extends AbstractResultBuilder {
+        @Override
+        protected void simpleAdd(String name, Object value) {
+            names.add(name);
+            values.add(value);
+        }
+
+        @Override
+        protected boolean convertArraysToLists() {
+            return DualResultBuilder.this.convertArraysToLists();
+        }
+    }
+
+    protected abstract boolean convertArraysToLists();
 
     private class SecondResultBuilder extends AbstractResultBuilder {
 
@@ -42,6 +51,11 @@ public abstract class DualResultBuilder extends AbstractResultBuilder {
             } else {
                 extraSecondValue(name, value);
             }
+        }
+
+        @Override
+        protected boolean convertArraysToLists() {
+            return DualResultBuilder.this.convertArraysToLists();
         }
     }
 

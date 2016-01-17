@@ -7,20 +7,24 @@ import java.util.List;
 class TableBuilder extends AbstractResultBuilder {
 
     static <E extends CaseClass> String getTable(Iterable<E> objects) {
-        Collection<E> objectCollection;
-        if (objects instanceof Collection) {
-            objectCollection = (Collection<E>) objects;
-        } else {
-            objectCollection = new ArrayList<E>();
-            for (E object : objects) {
-                objectCollection.add(object);
-            }
-        }
+        Collection<E> objectCollection = toCollection(objects);
         if (objectCollection.isEmpty()) {
             return "[Empty table]";
         }
 
         return new TableBuilder().getString(objectCollection);
+    }
+
+    private static <E extends CaseClass> Collection<E> toCollection(Iterable<E> objects) {
+        if (objects instanceof Collection) {
+            return (Collection<E>) objects;
+        }
+
+        List<E> list = new ArrayList<E>();
+        for (E object : objects) {
+            list.add(object);
+        }
+        return list;
     }
 
     private <E extends CaseClass> String getString(Collection<E> objects) {
@@ -97,20 +101,30 @@ class TableBuilder extends AbstractResultBuilder {
 
     @Override
     protected void simpleAdd(String name, Object value) {
-        String expectedName = names.get(column);
-        if (!name.equals(expectedName)) {
-            throw new IllegalArgumentException("Found the name " + name + ", expected " + expectedName +
-                    ". Ensure that every value has the same sequence of names.");
-        }
         appendCell(String.valueOf(value), value instanceof Number);
+    }
+
+    @Override
+    protected boolean convertArraysToLists() {
+        return true;
     }
 
     private ResultBuilder widthsBuilder = new AbstractResultBuilder() {
 
         @Override
         protected void simpleAdd(String name, Object value) {
+            String expectedName = names.get(column);
+            if (!name.equals(expectedName)) {
+                throw new IllegalArgumentException("Found the name " + name + ", expected " + expectedName +
+                        ". Ensure that every value has the same sequence of names.");
+            }
             widths[column] = Math.max(widths[column], String.valueOf(value).length());
             incColumn();
+        }
+
+        @Override
+        protected boolean convertArraysToLists() {
+            return true;
         }
     };
 }

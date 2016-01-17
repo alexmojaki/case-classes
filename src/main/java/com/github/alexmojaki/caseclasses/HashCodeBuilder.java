@@ -18,6 +18,11 @@ class HashCodeBuilder extends AbstractResultBuilder {
     }
 
     @Override
+    protected boolean convertArraysToLists() {
+        return true;
+    }
+
+    @Override
     protected void simpleAdd(String name, boolean value) {
         extendHashCode(Boolean.hashCode(value));
     }
