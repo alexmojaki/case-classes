@@ -241,4 +241,69 @@ public class CSVWriterTest {
         new CSVWriter(new StringWriter()).write(Arrays.asList(new SimpleCaseClass("a", 1, "b", 2), new SimpleCaseClass("a", 1, "c", 2)));
     }
 
+    private static class TestExceptionWriter extends Writer {
+
+        @Override
+        public void write(char[] cbuf, int off, int len) throws IOException {
+            throw new IOException("write");
+        }
+
+        @Override
+        public void flush() throws IOException {
+        }
+
+        @Override
+        public void close() throws IOException {
+            throw new IOException("close");
+        }
+    }
+
+    @Test
+    public void fileNotFoundReThrown() {
+        exception.expect(IllegalStateException.class);
+        new CSVWriter("q/w/e/r/t/y/uiop.csv").write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
+    }
+
+    @Test
+    public void writeAndCloseExceptions() {
+        ByteArrayOutputStream tempErr = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(tempErr));
+        try {
+            new CSVWriter(new TestExceptionWriter()).write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
+        } catch (IllegalStateException e) {
+            assertEquals("close", e.getCause().getMessage());
+            assertEquals("java.io.IOException: write", e.getSuppressed()[0].getMessage());
+            return;
+        } finally {
+            System.setErr(originalErr);
+        }
+        fail();
+    }
+
+    @Test
+    public void closeExceptionReThrown() {
+        try {
+            new CSVWriter(new TestExceptionWriter()).close();
+        } catch (IllegalStateException e) {
+            assertEquals("close", e.getCause().getMessage());
+            return;
+        }
+        fail();
+    }
+
+    @Test
+    public void writeExceptionReThrown() {
+        try {
+            CSVWriter csvWriter = new CSVWriter(new TestExceptionWriter()).leaveOpen();
+            csvWriter.write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
+        } catch (IllegalStateException e) {
+            assertEquals("write", e.getCause().getMessage());
+            return;
+        }
+        fail();
+    }
+
+
+
 }

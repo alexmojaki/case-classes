@@ -85,6 +85,7 @@ public class CSVWriter {
     }
 
     public void write(Iterable<? extends CaseClass> objects) {
+        RuntimeException writeException = null;
         try {
             out.ensureReady();
             Iterator<? extends CaseClass> objectIterator = objects.iterator();
@@ -108,9 +109,21 @@ public class CSVWriter {
                 }
                 object = objectIterator.next();
             }
+        } catch (RuntimeException e) {
+            writeException = e;
         } finally {
             if (autoClose) {
-                close();
+                try {
+                    close();
+                } catch (IllegalStateException closeException) {
+                    if (writeException != null) {
+                        closeException.addSuppressed(writeException);
+                    }
+                    throw closeException;
+                }
+            }
+            if (writeException != null) {
+                throw writeException;
             }
         }
     }
