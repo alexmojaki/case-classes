@@ -27,9 +27,4 @@ class ToStringBuilder extends AbstractResultBuilder {
         stringBuilder.append(value);
     }
 
-    @Override
-    protected boolean convertArraysToLists() {
-        return true;
-    }
-
 }

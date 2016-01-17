@@ -23,9 +23,4 @@ class MapBuilder<V> extends AbstractResultBuilder {
         map.put(name, type.cast(value));
     }
 
-    @Override
-    protected boolean convertArraysToLists() {
-        return false;
-    }
-
 }

@@ -54,9 +54,4 @@ class ComparisonBuilder extends DualResultBuilder {
             throw new ClassCastException("Couldn't compare getValuesList with name " + name1);
         }
     }
-
-    @Override
-    protected boolean convertArraysToLists() {
-        return true;
-    }
 }

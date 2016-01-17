@@ -42,11 +42,6 @@ class EqualsBuilder extends DualResultBuilder {
     }
 
     @Override
-    protected boolean convertArraysToLists() {
-        return true;
-    }
-
-    @Override
     protected void extraFirstValue(String name, Object value) {
         equal = false;
     }

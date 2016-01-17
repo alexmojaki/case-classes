@@ -18,9 +18,4 @@ class NamesBuilder extends AbstractResultBuilder {
         list.add(name);
     }
 
-    @Override
-    protected boolean convertArraysToLists() {
-        return false;
-    }
-
 }

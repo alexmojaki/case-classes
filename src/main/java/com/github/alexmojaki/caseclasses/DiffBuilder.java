@@ -77,9 +77,4 @@ class DiffBuilder extends DualResultBuilder {
             differingValues.add(row.add("First value", value1, "Second value", value2));
         }
     }
-
-    @Override
-    protected boolean convertArraysToLists() {
-        return true;
-    }
 }

@@ -104,11 +104,6 @@ class TableBuilder extends AbstractResultBuilder {
         appendCell(String.valueOf(value), value instanceof Number);
     }
 
-    @Override
-    protected boolean convertArraysToLists() {
-        return true;
-    }
-
     private ResultBuilder widthsBuilder = new AbstractResultBuilder() {
 
         @Override
@@ -120,11 +115,6 @@ class TableBuilder extends AbstractResultBuilder {
             }
             widths[column] = Math.max(widths[column], String.valueOf(value).length());
             incColumn();
-        }
-
-        @Override
-        protected boolean convertArraysToLists() {
-            return true;
         }
     };
 }

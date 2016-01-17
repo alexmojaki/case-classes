@@ -31,13 +31,7 @@ public abstract class DualResultBuilder {
             values.add(value);
         }
 
-        @Override
-        protected boolean convertArraysToLists() {
-            return DualResultBuilder.this.convertArraysToLists();
-        }
     }
-
-    protected abstract boolean convertArraysToLists();
 
     private class SecondResultBuilder extends AbstractResultBuilder {
 
@@ -53,10 +47,6 @@ public abstract class DualResultBuilder {
             }
         }
 
-        @Override
-        protected boolean convertArraysToLists() {
-            return DualResultBuilder.this.convertArraysToLists();
-        }
     }
 
 

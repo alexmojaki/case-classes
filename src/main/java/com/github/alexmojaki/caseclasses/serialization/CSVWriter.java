@@ -135,11 +135,6 @@ public class CSVWriter {
             incColumn();
         }
 
-        @Override
-        protected boolean convertArraysToLists() {
-            return true;
-        }
-
         private void ensureNameMatches(String name) {
             String expectedName = names.get(column);
             if (!name.equals(expectedName)) {

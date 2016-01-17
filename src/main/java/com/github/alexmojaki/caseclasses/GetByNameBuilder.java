@@ -19,9 +19,4 @@ class GetByNameBuilder extends AbstractResultBuilder {
         }
     }
 
-    @Override
-    protected boolean convertArraysToLists() {
-        return false;
-    }
-
 }
