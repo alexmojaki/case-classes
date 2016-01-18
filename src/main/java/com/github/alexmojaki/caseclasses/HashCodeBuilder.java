@@ -5,6 +5,9 @@ import java.util.Objects;
 class HashCodeBuilder extends AbstractResultBuilder {
 
     static int hash(CaseClass obj) {
+        if (obj == null) {
+            return 0;
+        }
         HashCodeBuilder builder = new HashCodeBuilder();
         obj.buildResult(builder);
         return builder.result;

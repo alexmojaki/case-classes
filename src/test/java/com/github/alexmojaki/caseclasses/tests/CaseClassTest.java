@@ -10,6 +10,7 @@ import org.junit.rules.ExpectedException;
 import java.util.*;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class CaseClassTest {
@@ -130,5 +131,12 @@ public class CaseClassTest {
         };
         TestCase.assertEquals(Objects.hash(objects), caseClass.hashCode());
         TestCase.assertEquals(Arrays.asList(objects), CaseClasses.getValuesList(caseClass));
+    }
+
+    @Test
+    public void testNulls() {
+        assertFalse(CaseClasses.equals(null, new SimpleCaseClass()));
+        assertEquals(0, CaseClasses.hashCode(null));
+        assertEquals("null", CaseClasses.toString(null));
     }
 }

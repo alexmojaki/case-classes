@@ -46,7 +46,7 @@ public class TableTest {
                         "| Arnold     | Schwarzenegger |   68 |\n" +
                         "| null       | null           | null |\n" +
                         "+------------+----------------+------+\n";
-        String actual = CaseClasses.getTable(Arrays.asList(
+        String actual = CaseClasses.getPrettyTable(Arrays.asList(
                 new Person("John", "Doe", 23),
                 new Person("Arnold", "Schwarzenegger", 68),
                 new Person(null, null, null)
@@ -57,13 +57,13 @@ public class TableTest {
     @Test
     public void testEmptyTable() {
         List<CaseClass> emptyList = Collections.emptyList();
-        TestCase.assertEquals("[Empty table]", CaseClasses.getTable(emptyList));
+        TestCase.assertEquals("[Empty table]", CaseClasses.getPrettyTable(emptyList));
     }
 
     @Test
     public void testMismatchedNames() {
         exception.expect(IllegalArgumentException.class);
-        CaseClasses.getTable(Arrays.asList(new SimpleCaseClass("a", 1), new SimpleCaseClass("b", 1)));
+        CaseClasses.getPrettyTable(Arrays.asList(new SimpleCaseClass("a", 1), new SimpleCaseClass("b", 1)));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class TableTest {
                         "+---+\n" +
                         "| 1 |\n" +
                         "| 2 |\n" +
-                        "+---+\n", CaseClasses.getTable(iterable));
+                        "+---+\n", CaseClasses.getPrettyTable(iterable));
     }
 
 

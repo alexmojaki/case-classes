@@ -34,7 +34,7 @@ public class CSVWriterTest {
     private CSVWriter.Formatter formatter = CSVWriter.Formatter.QUOTE_IF_NEEDED;
 
     private CSVWriter configureWriter(CSVWriter csvWriter) {
-        return csvWriter.separator(separator).quote(quote).escape(escape).nullRepresentation(nullRepresentation).formatter(formatter);
+        return csvWriter.separator(separator).quote(quote).escape(escape).nullRepresentation(nullRepresentation).formatter(formatter).autoClose();
     }
 
     private static CaseClass row(Object a, Object b, Object c) {
@@ -192,16 +192,16 @@ public class CSVWriterTest {
     public void autoCloseNormally() {
         TestCloseWriter writer = new TestCloseWriter();
         assertFalse(writer.closed);
-        new CSVWriter(writer).write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
+        new CSVWriter(writer).autoClose().write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
         assertTrue(writer.closed);
     }
 
     @Test
-    public void autoCloseAlways() {
+    public void autoCloseWithError() {
         TestCloseWriter writer = new TestCloseWriter();
         assertFalse(writer.closed);
         try {
-            new CSVWriter(writer).write(Arrays.asList(row(1, 2, 3), new CaseClass() {
+            new CSVWriter(writer).autoClose().write(Arrays.asList(row(1, 2, 3), new CaseClass() {
                 @Override
                 public void buildResult(ResultBuilder builder) {
                     throw new Error();
@@ -218,7 +218,7 @@ public class CSVWriterTest {
     public void leaveOpen() {
         TestCloseWriter writer = new TestCloseWriter();
         assertFalse(writer.closed);
-        new CSVWriter(writer).leaveOpen().write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
+        new CSVWriter(writer).write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
         assertFalse(writer.closed);
     }
 
@@ -266,17 +266,12 @@ public class CSVWriterTest {
 
     @Test
     public void writeAndCloseExceptions() {
-        ByteArrayOutputStream tempErr = new ByteArrayOutputStream();
-        PrintStream originalErr = System.err;
-        System.setErr(new PrintStream(tempErr));
         try {
-            new CSVWriter(new TestExceptionWriter()).write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
+            new CSVWriter(new TestExceptionWriter()).autoClose().write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
         } catch (IllegalStateException e) {
             assertEquals("close", e.getCause().getMessage());
             assertEquals("java.io.IOException: write", e.getSuppressed()[0].getMessage());
             return;
-        } finally {
-            System.setErr(originalErr);
         }
         fail();
     }
@@ -295,7 +290,7 @@ public class CSVWriterTest {
     @Test
     public void writeExceptionReThrown() {
         try {
-            CSVWriter csvWriter = new CSVWriter(new TestExceptionWriter()).leaveOpen();
+            CSVWriter csvWriter = new CSVWriter(new TestExceptionWriter());
             csvWriter.write(Arrays.asList(row(1, 2, 3), row(4, 5, 6)));
         } catch (IllegalStateException e) {
             assertEquals("write", e.getCause().getMessage());

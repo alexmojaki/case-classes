@@ -1,5 +1,15 @@
 package com.github.alexmojaki.caseclasses;
 
+/**
+ * A convenience class with implementations of the essential
+ * methods of {@code Object}: {@code equals}, {@code hashCode},
+ * and {@code toString}. If extending this class is not an option,
+ * just copy the source code for the required methods.
+ *
+ * @see CaseClasses#equals(CaseClass, Object)
+ * @see CaseClasses#toString(CaseClass)
+ * @see CaseClasses#hashCode(CaseClass)
+ */
 public abstract class AbstractCaseClass implements CaseClass {
 
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")

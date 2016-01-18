@@ -6,6 +6,9 @@ class ToStringBuilder extends AbstractResultBuilder {
     private boolean first = true;
 
     static String toString(CaseClass obj) {
+        if (obj == null) {
+            return "null";
+        }
         ToStringBuilder builder = new ToStringBuilder();
         StringBuilder stringBuilder = builder.stringBuilder;
         stringBuilder.append(obj.getClass().getSimpleName());

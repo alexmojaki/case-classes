@@ -5,6 +5,7 @@ import com.github.alexmojaki.caseclasses.CaseClasses;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -20,7 +21,7 @@ public class Utils {
         for (Object o1 : objects) {
             for (Object o2 : objects) {
                 assertEquals(o1, o2);
-                assertTrue(o1.toString().equals(o2.toString()) || o1.getClass() != o2.getClass());
+                assertTrue(String.valueOf(o1).equals(String.valueOf(o2)) || o1.getClass() != o2.getClass());
             }
         }
     }
@@ -28,7 +29,7 @@ public class Utils {
     public static void assertHashEqual(Object... objects) {
         for (Object o1 : objects) {
             for (Object o2 : objects) {
-                assertEquals(o1.hashCode(), o2.hashCode());
+                assertEquals(Objects.hashCode(o1), Objects.hashCode(o2));
             }
         }
     }

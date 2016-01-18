@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-class TableBuilder extends AbstractResultBuilder {
+class PrettyTableBuilder extends AbstractResultBuilder {
 
-    static <E extends CaseClass> String getTable(Iterable<E> objects) {
+    static <E extends CaseClass> String getPrettyTable(Iterable<E> objects) {
         Collection<E> objectCollection = toCollection(objects);
         if (objectCollection.isEmpty()) {
             return "[Empty table]";
         }
 
-        return new TableBuilder().getString(objectCollection);
+        return new PrettyTableBuilder().getString(objectCollection);
     }
 
     private static <E extends CaseClass> Collection<E> toCollection(Iterable<E> objects) {

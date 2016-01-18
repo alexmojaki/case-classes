@@ -62,7 +62,7 @@ public class DiffTest {
                         "| a    |           1 |            2 |\n" +
                         "+------+-------------+--------------+\n" +
                         "\n" +
-                        "Matching getValuesList:\n" +
+                        "Matching values:\n" +
                         "\n" +
                         "+------+-------+\n" +
                         "| Name | Value |\n" +
@@ -80,7 +80,7 @@ public class DiffTest {
                         "| b    |           2 |            3 |\n" +
                         "+------+-------------+--------------+\n" +
                         "\n" +
-                        "Matching getValuesList:\n" +
+                        "Matching values:\n" +
                         "\n" +
                         "+------+-------+\n" +
                         "| Name | Value |\n" +
@@ -99,7 +99,7 @@ public class DiffTest {
                         "| c    |           4 |            5 |\n" +
                         "+------+-------------+--------------+\n" +
                         "\n" +
-                        "Matching getValuesList:\n" +
+                        "Matching values:\n" +
                         "\n" +
                         "+------+-------+\n" +
                         "| Name | Value |\n" +
@@ -112,23 +112,23 @@ public class DiffTest {
     @Test
     public void differentNames() {
         assertDiff(new SimpleCaseClass("a", 1, "b", 2), new SimpleCaseClass("a", 1),
-                "The names of the getValuesList do not match.\n" +
+                "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(a = 1, b = 2)\n" +
                         "Actual: SimpleCaseClass(a = 1)");
         assertDiff(new SimpleCaseClass("a", 1, "b", 2), new SimpleCaseClass("a", 3),
-                "The names of the getValuesList do not match.\n" +
+                "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(a = 1, b = 2)\n" +
                         "Actual: SimpleCaseClass(a = 3)");
         assertDiff(new SimpleCaseClass("a", 1), new SimpleCaseClass("a", 1, "b", 2),
-                "The names of the getValuesList do not match.\n" +
+                "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(a = 1)\n" +
                         "Actual: SimpleCaseClass(a = 1, b = 2)");
         assertDiff(new SimpleCaseClass("b", 2, "a", 1), new SimpleCaseClass("a", 1, "b", 2),
-                "The names of the getValuesList do not match.\n" +
+                "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(b = 2, a = 1)\n" +
                         "Actual: SimpleCaseClass(a = 1, b = 2)");
         assertDiff(new SimpleCaseClass("b", 1), new SimpleCaseClass("a", 1),
-                "The names of the getValuesList do not match.\n" +
+                "The names of the values do not match.\n" +
                         "Expected: SimpleCaseClass(b = 1)\n" +
                         "Actual: SimpleCaseClass(a = 1)");
     }

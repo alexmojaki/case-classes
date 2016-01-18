@@ -30,7 +30,7 @@ class ComparisonBuilder extends DualResultBuilder {
 
     @SuppressWarnings("unchecked")
     @Override
-    protected void apply(String name1, Object value1, String name2, Object value2) {
+    protected void add(String name1, Object value1, String name2, Object value2) {
         if (!name1.equals(name2)) {
             throw new ClassCastException("Differing names: " + name1 + " and " + name2);
         }
@@ -46,12 +46,8 @@ class ComparisonBuilder extends DualResultBuilder {
             updateResult(compare(
                     (CaseClass) value1,
                     (CaseClass) value2));
-        } else if (value1 instanceof List) {
-            updateResult(compare(
-                    CaseClasses.toCaseClass((List) value1),
-                    CaseClasses.toCaseClass((List) value2)));
         } else {
-            throw new ClassCastException("Couldn't compare getValuesList with name " + name1);
+            throw new ClassCastException("Couldn't compare values with name " + name1);
         }
     }
 }

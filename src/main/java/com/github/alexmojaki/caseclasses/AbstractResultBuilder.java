@@ -1,5 +1,13 @@
 package com.github.alexmojaki.caseclasses;
 
+/**
+ * A skeleton to make implementing {@link ResultBuilder} easier.
+ * The implementations of {@code add} return the builder for chaining so that
+ * instead you should implement the void methods {@code simpleAdd}.
+ * The {@code simpleAdd} methods for primitive values delegate to
+ * {@link AbstractResultBuilder#simpleAdd(String, Object)} so you need only override
+ * them if you wish to avoid autoboxing for efficiency.
+ */
 public abstract class AbstractResultBuilder implements ResultBuilder {
 
     protected abstract void simpleAdd(String name, Object value);

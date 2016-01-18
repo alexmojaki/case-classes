@@ -134,7 +134,8 @@ public class EqualsTest {
                 }, new FlexibleWithInterface2() {
                 }),
                 asList(new SimpleCaseClass("a", 1, "b", "C"), new SimpleCaseClass("a", 1, "b", "C")),
-                asList(new SimpleCaseClass("a", 1, "b", "D"), new SimpleCaseClass("a", 1, "b", "D"))
+                asList(new SimpleCaseClass("a", 1, "b", "D"), new SimpleCaseClass("a", 1, "b", "D")),
+                singletonList(null)
                 );
     }
 

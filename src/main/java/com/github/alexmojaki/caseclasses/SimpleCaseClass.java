@@ -3,6 +3,14 @@ package com.github.alexmojaki.caseclasses;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class makes it easy to create a {@code CaseClass} with minimal
+ * syntax and performance overhead. Simply pass in components to the constructor
+ * and/or {@code add} methods in the same order you want them to be passed
+ * to the {@code ResultBuilder}. The methods and constructors take up to ten
+ * components at a time, but there are no limits to the total number of components
+ * or method calls.
+ */
 public class SimpleCaseClass extends AbstractCaseClass {
 
     private List<String> names = new ArrayList<String>();
