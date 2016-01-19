@@ -226,7 +226,7 @@ Sometimes you want to build a result from two `CaseClass`es, pairing the value c
 
 ## The equals method
 
-One utility in this library that deserves special mention is the `CaseClasses.equals` method. This doesn't just save boilerplate - it solves an annoying problem in Java. According to Item 8 in *Effective Java* by Joshua Bloch:
+One utility in this library that deserves special mention is the [`CaseClasses.equals`](http://alexmojaki.github.io/case-classes/javadoc/apidocs/com/github/alexmojaki/caseclasses/CaseClasses.html#equals-com.github.alexmojaki.caseclasses.CaseClass-java.lang.Object-) method. This doesn't just save boilerplate - it solves an annoying problem in Java. According to Item 8 in *Effective Java* by Joshua Bloch:
 
 > There is no way to extend an instantiable class and add a value component while preserving the equals contract, unless you are willing to forgo the benefits of object-oriented abstraction.
 
