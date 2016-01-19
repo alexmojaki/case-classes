@@ -96,9 +96,7 @@ public class CaseClassTest {
         CaseClass caseClass1 = CaseClasses.toCaseClass(map);
         CaseClass caseClass2 = CaseClasses.toCaseClass(treeMap);
         TestCase.assertEquals(caseClass1, caseClass2);
-        String expectedString = "MapCaseClass(a = 1, b = 2, c = 3)";
-        TestCase.assertEquals(expectedString, caseClass1.toString());
-        TestCase.assertEquals(expectedString, caseClass2.toString());
+        TestCase.assertEquals("MapCaseClass(a = 1, b = 2, c = 3)", caseClass2.toString());
     }
 
     @Test
