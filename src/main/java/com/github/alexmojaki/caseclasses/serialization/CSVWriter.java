@@ -168,11 +168,9 @@ public class CSVWriter {
      * to the given {@code File}, using either the system
      * default {@code Charset} or the one specified by the
      * {@link CSVWriter#charset(Charset)} method.
-     * Automatically closes itself after writing.
      */
     public CSVWriter(File file) {
         out = new EasyWriter(file);
-        autoClose();
     }
 
     /**
@@ -180,11 +178,9 @@ public class CSVWriter {
      * to a file at the given path, using either the system
      * default {@code Charset} or the one specified by the
      * {@link CSVWriter#charset(Charset)} method.
-     * Automatically closes itself after writing.
      */
     public CSVWriter(String filePath) {
         out = new EasyWriter(filePath);
-        autoClose();
     }
 
     /**
@@ -203,7 +199,7 @@ public class CSVWriter {
      *         <li>Escape any instances of the {@link CSVWriter#escape(char)} character (default '\').</li>
      *         <li>Format the value: see {@link CSVWriter#formatter(Formatter)} and {@link CSVWriter#quote(char)}.</li>
      *     </ol></li>
-     *     <li>If {@link CSVWriter#autoClose()} was called (some constructors do this, or you can yourself),
+     *     <li>If {@link CSVWriter#autoClose()} was called,
      *     call {@link CSVWriter#close()}. This step will happen even if an exception is thrown during writing.</li>
      * </ol>
      *
