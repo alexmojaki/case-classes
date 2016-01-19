@@ -1,5 +1,7 @@
 # Case Classes
 
+[![Join the chat at https://gitter.im/alexmojaki/case-classes](https://badges.gitter.im/alexmojaki/case-classes.svg)](https://gitter.im/alexmojaki/case-classes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Introduction
 
 This library provides a framework to elegantly refactor the pattern of computing a result from the essential values that one or more objects are composed of. This is best demonstrated by an example. Consider the class below:
