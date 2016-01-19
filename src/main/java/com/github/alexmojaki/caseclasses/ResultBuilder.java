@@ -5,7 +5,8 @@ package com.github.alexmojaki.caseclasses;
  * method and uses it to construct some result. Each {@code add} method
  * should return the same builder so that method calls can be chained. The builder
  * should behave identically whether it receives a primitive value or the boxed value
- * of the corresponding wrapper type.
+ * of the corresponding wrapper type - the methods with primitive values exist only
+ * to allow boosting performance.
  */
 public interface ResultBuilder {
 

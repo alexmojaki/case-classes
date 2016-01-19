@@ -9,7 +9,7 @@ import java.util.*;
 
 import static com.github.alexmojaki.caseclasses.CaseClasses.*;
 
-public class Demo {
+public class Intro {
 
     public static void main(String[] args) {
         Employee richJane = new Employee("Jane", "Doe", 50000);
@@ -121,7 +121,7 @@ public class Demo {
         John,Smith,2000
         Bob,Builder,1000000
         */
-        // (the CSVWriter is highly configurable - this is just a basic demo)
+        // (This is just a basic demo. The CSVWriter is highly configurable. See the javadocs for more)
 
         // CaseClasses are easy to construct from a map:
         Map<String, Object> michael = new HashMap<String, Object>();
@@ -163,5 +163,4 @@ class Employee extends AbstractCaseClass {
                 .add("lastName", lastName)
                 .add("salary", salary);
     }
-
 }

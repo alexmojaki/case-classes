@@ -26,7 +26,6 @@ class EqualsBuilder extends DualResultBuilder {
     }
 
     static boolean classesMatch(CaseClass o1, CaseClass o2) {
-
         if (o1 instanceof FlexiblyEqual && o2 instanceof FlexiblyEqual) {
             if (!(((FlexiblyEqual) o1).equalsBaseClass().isInstance(o2) &&
                     ((FlexiblyEqual) o2).equalsBaseClass().isInstance(o1))) {

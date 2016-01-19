@@ -10,6 +10,8 @@ import java.util.List;
  * If one {@code CaseClass} adds more components than the other, either
  * {@link DualResultBuilder#extraFirstValue(String, Object)} or
  * {@link DualResultBuilder#extraSecondValue(String, Object)} will be called.
+ * Instead of calling {@link CaseClass#buildResult(ResultBuilder)},
+ * this class is used by calling {@link DualResultBuilder#buildResult(CaseClass, CaseClass)}.
  */
 public abstract class DualResultBuilder {
 

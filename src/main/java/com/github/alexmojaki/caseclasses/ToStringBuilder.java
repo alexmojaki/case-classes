@@ -20,11 +20,10 @@ class ToStringBuilder extends AbstractResultBuilder {
 
     @Override
     protected void simpleAdd(String name, Object value) {
-        if (first) {
-            first = false;
-        } else {
+        if (!first) {
             stringBuilder.append(", ");
         }
+        first = false;
         stringBuilder.append(name);
         stringBuilder.append(" = ");
         stringBuilder.append(value);
