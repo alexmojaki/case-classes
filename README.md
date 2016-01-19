@@ -1,6 +1,7 @@
 # Case Classes
 
-[![Join the chat at https://gitter.im/alexmojaki/case-classes](https://badges.gitter.im/alexmojaki/case-classes.svg)](https://gitter.im/alexmojaki/case-classes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build status](https://travis-ci.org/alexmojaki/case-classes.svg?branch=master)](https://travis-ci.org/alexmojaki/case-classes)
+[![Join the chat at https://gitter.im/alexmojaki/case-classes](https://badges.gitter.im/alexmojaki/case-classes.svg)](https://gitter.im/alexmojaki/case-classes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build status](https://travis-ci.org/alexmojaki/case-classes.svg?branch=master)](https://travis-ci.org/alexmojaki/case-classes) [![Coverage Status](https://coverall..io/repos/github/alexmojaki/case-classes/badge.svg?branch=master)](https://coveralls.io/github/alexmojaki/case-classes?branch=master)
+
 
 ## Introduction
 
