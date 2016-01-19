@@ -180,6 +180,18 @@ println(new SimpleCaseClass("firstName", "Bill", "lastName", "Gates", "salary", 
 // SimpleCaseClass(firstName = Bill, lastName = Gates, salary = 999999999)
 ```
 
+## Setup
+
+For maven projects, in your pom.xml:
+
+```xml
+<dependency>
+  <groupId>com.github.alexmojaki</groupId>
+  <artifactId>case-classes</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
 ## Writing your own utilities
 
 It's very easy to write your own utilities using `ResultBuilder`s. Here is a simple implementation of the `CaseClasses.toMap` method:
