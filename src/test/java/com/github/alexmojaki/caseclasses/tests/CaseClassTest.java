@@ -93,10 +93,8 @@ public class CaseClassTest {
         CaseClasses.putValues(x, treeMap, Integer.class);
         CaseClasses.putValues(x, treeMap);
         assertEquals(map, treeMap);
-        CaseClass caseClass1 = CaseClasses.toCaseClass(map);
-        CaseClass caseClass2 = CaseClasses.toCaseClass(treeMap);
-        TestCase.assertEquals(caseClass1, caseClass2);
-        TestCase.assertEquals("MapCaseClass(a = 1, b = 2, c = 3)", caseClass2.toString());
+        CaseClass treeMapCaseClass = CaseClasses.toCaseClass(treeMap);
+        TestCase.assertEquals("MapCaseClass(a = 1, b = 2, c = 3)", treeMapCaseClass.toString());
     }
 
     @Test
