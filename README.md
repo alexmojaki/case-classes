@@ -223,7 +223,7 @@ class MapBuilder extends AbstractResultBuilder {
 
 Let's break this down. `AbstractResultBuilder` is a skeletal implementation of `ResultBuilder` that only requires you to implement one method: `simpleAdd`. The `name` and `value` parameters come from a `CaseClass` making calls like `builder.add("firstName", firstName)` in `CaseClass.buildResult`. These are put in the `map` field of the builder, which is retrieved from the builder after calling `caseClass.buildResult(builder)`.
 
-Sometimes you want to build a result from two `CaseClass`es, pairing the value components that are at the same position. The `DualResultBuilder` class can help with this. See the [javadoc](http://alexmojaki.github.io/case-classes/javadoc/apidocs/index.html?com/github/alexmojaki/caseclasses/package-summary.html) for more details, and the source of some subclasses (e.g. [`EqualsBuilder`](https://github.com/alexmojaki/case-classes/blob/master/src/main/java/com/github/alexmojaki/caseclasses/EqualsBuilder.java)) for example implementations.
+Sometimes you want to build a result from two `CaseClass`es, pairing the value components that are at the same position. The `DualResultBuilder` class can help with this. See the [javadoc](http://alexmojaki.github.io/case-classes/javadoc/apidocs/com/github/alexmojaki/caseclasses/DualResultBuilder.html) for more details, and the source of some subclasses (e.g. [`EqualsBuilder`](https://github.com/alexmojaki/case-classes/blob/master/src/main/java/com/github/alexmojaki/caseclasses/EqualsBuilder.java)) for example implementations.
 
 ## The equals method
 
