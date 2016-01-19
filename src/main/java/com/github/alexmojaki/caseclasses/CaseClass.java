@@ -14,7 +14,7 @@ public interface CaseClass {
      * Since the builder returns itself, multiple calls can be chained.
      * For example:
      * {@code builder.add("name", name).add("age", age).add(...);}
-     * <p/>
+     * <p>
      * Note that adding a value to a builder exposes it as part of the
      * class's interface, so if you don't want to have a public
      * getter method for a value, you probably don't want to add it here.

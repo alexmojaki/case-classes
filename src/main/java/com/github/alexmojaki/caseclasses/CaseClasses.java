@@ -29,14 +29,14 @@ public enum CaseClasses {
      * Compare the arguments for equality. Return {@code true} if and only if
      * the arguments have compatible types (see below) and they consist
      * of equal sequences of names and values, in the same order.
-     * <p/>
+     * <p>
      * By default the types of the arguments are compatible if and only if they
      * are equal, i.e. {@code o1.getClass() == o2.getClass()}. However if both
      * arguments implement {@link FlexiblyEqual}, then the types are compatible
      * if each is a subtype of the class returned by the other's {@link FlexiblyEqual#equalsBaseClass()}.
      * This is analogous to a traditional implementation of {@code equals} using
      * an {@code instanceof} check.
-     * <p/>
+     * <p>
      * Use this along with {@link CaseClasses#hashCode(CaseClass)}.
      */
     public static boolean equals(CaseClass o1, Object o2) {
