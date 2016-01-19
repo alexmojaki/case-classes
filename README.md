@@ -6,6 +6,7 @@
 * [Setup](#setup)
 * [Writing your own utilities](#writing-your-own-utilities)
 * [The equals method](#the-equals-method)
+* [Javadocs](http://alexmojaki.github.io/case-classes/javadoc/apidocs/index.html?com/github/alexmojaki/caseclasses/package-summary.html)
 
 ## Introduction
 
